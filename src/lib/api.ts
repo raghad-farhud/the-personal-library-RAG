@@ -8,6 +8,13 @@ import type {
 } from "@/types";
 import { MOCK_ASK_RESPONSE, MOCK_INGESTION_DELAY, MOCK_ASK_DELAY, USE_MOCK } from "./mock-data";
 
+const isDev = import.meta.env.DEV;
+
+/** In development, use proxy paths to avoid CORS when calling n8n webhooks. */
+function resolveUrl(configured: string, proxyPath: "/api/ask" | "/api/ingest"): string {
+  return isDev ? proxyPath : configured;
+}
+
 function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -33,7 +40,8 @@ export async function submitPdf(
   formData.append("notes", payload.notes);
   formData.append("file", payload.file);
 
-  const res = await fetch(url, { method: "POST", body: formData });
+  const resolved = resolveUrl(url, "/api/ingest");
+  const res = await fetch(resolved, { method: "POST", body: formData });
   if (!res.ok) throw new Error(`Upload failed: ${res.statusText}`);
   return { success: true, message: "PDF uploaded successfully" };
 }
@@ -49,13 +57,25 @@ export async function submitJson<
     return { success: true, message: `${payload.source_type} saved successfully (mock)` };
   }
 
-  const res = await fetch(url, {
+  const resolved = resolveUrl(url, "/api/ingest");
+  const res = await fetch(resolved, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Submission failed: ${res.statusText}`);
   return { success: true, message: `${payload.source_type} saved successfully` };
+}
+
+function normalizeConfidence(
+  raw: unknown,
+): "high" | "medium" | "low" | undefined {
+  if (raw === "high" || raw === "medium" || raw === "low") return raw;
+  const n = typeof raw === "string" ? parseFloat(raw) : typeof raw === "number" ? raw : NaN;
+  if (isNaN(n)) return undefined;
+  if (n >= 0.75) return "high";
+  if (n >= 0.4) return "medium";
+  return "low";
 }
 
 export async function askLibrary(
@@ -67,13 +87,36 @@ export async function askLibrary(
     return MOCK_ASK_RESPONSE;
   }
 
-  const res = await fetch(url, {
+  const resolved = resolveUrl(url, "/api/ask");
+  const res = await fetch(resolved, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
   if (!res.ok) throw new Error(`Query failed: ${res.statusText}`);
-  return res.json();
+
+  const raw = await res.text();
+  console.log("[askLibrary] raw response:", raw);
+
+  let json: Record<string, unknown>;
+  try {
+    let parsed: unknown = JSON.parse(raw);
+    while (Array.isArray(parsed)) parsed = parsed[0];
+    if (typeof parsed === "string") parsed = JSON.parse(parsed);
+    json = (parsed as Record<string, unknown>) ?? {};
+  } catch {
+    throw new Error(`Invalid response from webhook: ${raw.slice(0, 200)}`);
+  }
+
+  if (json.output && typeof json.output === "object" && "answer" in (json.output as object)) {
+    json = json.output as Record<string, unknown>;
+  }
+
+  return {
+    answer: (json.answer as string) ?? "No answer returned.",
+    confidence: normalizeConfidence(json.confidence),
+    sources: Array.isArray(json.sources) ? json.sources : [],
+  };
 }
 
 export async function testWebhook(url: string): Promise<boolean> {

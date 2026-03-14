@@ -2,18 +2,20 @@ import type { WebhookConfig } from "@/types";
 
 const STORAGE_KEY = "library-mind-config";
 
-const DEFAULT_CONFIG: WebhookConfig = {
-  ingestionUrl: "",
-  askUrl: "",
-};
+function getDefaultConfig(): WebhookConfig {
+  return {
+    ingestionUrl: import.meta.env.VITE_INGEST_WEBHOOK_URL ?? "",
+    askUrl: import.meta.env.VITE_ASK_WEBHOOK_URL ?? "",
+  };
+}
 
 export function loadConfig(): WebhookConfig {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return DEFAULT_CONFIG;
-    return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
+    if (!raw) return getDefaultConfig();
+    return { ...getDefaultConfig(), ...JSON.parse(raw) };
   } catch {
-    return DEFAULT_CONFIG;
+    return getDefaultConfig();
   }
 }
 
