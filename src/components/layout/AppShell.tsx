@@ -18,7 +18,7 @@ export function AppShell() {
         className="pointer-events-none absolute right-1/4 top-24 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-3xl"
       />
 
-      <main className={`relative mx-auto max-w-5xl px-6 py-8 ${isAuthenticated ? "pt-24" : "pt-8"}`}>
+      <main className={`relative px-6 py-8 ${isAuthenticated ? "pt-24" : "pt-8"}`}>
         <Outlet />
       </main>
     </div>
