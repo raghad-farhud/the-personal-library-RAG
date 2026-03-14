@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@keyframes status-enter {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@theme {
+  --font-serif: "Lora", Georgia, "Times New Roman", serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+
+  /* Surfaces — warm peachy undertone */
+  --color-cream-50: #FFFBF8;
+  --color-cream-100: #FFF5EE;
+  --color-cream-200: #FFE8D8;
+  --color-cream-300: #FFD8C2;
+  --color-cream-400: #FFC8AC;
+  --color-cream-500: #E8B090;
+
+  /* Neutrals — modern slate with depth */
+  --color-warm-50: #F8F8FA;
+  --color-warm-100: #F0F0F4;
+  --color-warm-200: #E2E2E8;
+  --color-warm-300: #C8C8D2;
+  --color-warm-400: #9898A8;
+  --color-warm-500: #6E6E84;
+  --color-warm-600: #52526A;
+  --color-warm-700: #3A3A54;
+  --color-warm-800: #282840;
+  --color-warm-900: #1A1A2E;
+
+  /* Vivid green — botanical, lush */
+  --color-sage-100: #E2FBF0;
+  --color-sage-200: #ABF0CE;
+  --color-sage-300: #62DFA0;
+  --color-sage-400: #2CC87A;
+  --color-sage-500: #18A85E;
+
+  /* Vivid pink — bold, warm rose */
+  --color-rose-100: #FFE4ED;
+  --color-rose-200: #FFC2D4;
+  --color-rose-300: #FF8AAE;
+  --color-rose-400: #F75D8C;
+  --color-rose-500: #E03A6A;
+
+  /* Vivid amber/coral — sunset energy */
+  --color-amber-100: #FFF0E0;
+  --color-amber-200: #FFD6AE;
+  --color-amber-300: #FFB870;
+  --color-amber-400: #FF9838;
+  --color-amber-500: #E07B18;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-50);
+  color: var(--color-warm-900);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+::selection {
+  background-color: var(--color-rose-200);
+  color: var(--color-warm-900);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-warm-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-warm-400);
+}
