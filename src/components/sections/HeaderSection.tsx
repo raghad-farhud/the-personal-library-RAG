@@ -18,10 +18,10 @@ function StatusDot({
       <span
         className={cn(
           "inline-block h-2 w-2 rounded-full",
-          configured ? "bg-sage-400" : "bg-warm-300",
+          configured ? "bg-secondary" : "bg-muted-foreground/30",
         )}
       />
-      <span className="text-xs text-warm-500">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
     </div>
   );
 }
@@ -35,12 +35,12 @@ export function HeaderSection({
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <BookOpen className="h-7 w-7 text-warm-600" strokeWidth={1.5} />
-            <h1 className="font-serif text-4xl tracking-tight text-warm-900">
+            <BookOpen className="h-7 w-7 text-muted-foreground" strokeWidth={1.5} />
+            <h1 className="text-4xl tracking-tight text-foreground">
               Library Mind
             </h1>
           </div>
-          <p className="mt-2 text-lg text-warm-500">
+          <p className="mt-2 text-lg text-muted-foreground">
             Search your books, quotes, and ideas — one calm place.
           </p>
         </div>
@@ -52,9 +52,9 @@ export function HeaderSection({
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-2">
-        <span className="h-px w-12 bg-warm-200" />
-        <span className="h-1 w-1 rounded-full bg-warm-300" />
-        <span className="h-px w-12 bg-warm-200" />
+        <span className="h-px w-12 bg-border" />
+        <span className="h-1 w-1 rounded-full bg-border" />
+        <span className="h-px w-12 bg-border" />
       </div>
     </header>
   );

@@ -22,10 +22,10 @@ export function UploadPage() {
   return (
     <div className="space-y-10">
       <header>
-        <h1 className="font-serif text-3xl text-warm-900">
+        <h1 className="text-3xl text-foreground">
           Add to Your Library
         </h1>
-        <p className="mt-2 text-warm-500">
+        <p className="mt-2 text-muted-foreground">
           Upload documents, save quotes, capture insights, or jot down notes.
         </p>
       </header>

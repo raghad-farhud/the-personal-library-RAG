@@ -12,13 +12,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-to-r from-rose-400 to-rose-500 text-white hover:from-rose-500 hover:to-rose-500 shadow-sm shadow-rose-300/30 focus-visible:ring-rose-400",
+    "bg-gradient-to-r from-primary to-primary text-white hover:from-primary hover:to-primary shadow-sm shadow-primary/30 focus-visible:ring-ring",
   secondary:
-    "bg-cream-200 text-warm-800 hover:bg-cream-300 focus-visible:ring-amber-400",
+    "bg-muted text-foreground hover:bg-muted focus-visible:ring-ring",
   ghost:
-    "bg-transparent text-warm-600 hover:bg-cream-100 focus-visible:ring-warm-400",
+    "bg-transparent text-muted-foreground hover:bg-muted focus-visible:ring-ring",
   outline:
-    "bg-white text-warm-700 border border-warm-200 hover:border-rose-300 hover:bg-cream-50 focus-visible:ring-rose-300",
+    "bg-card text-card-foreground border border-border hover:border-ring hover:bg-background focus-visible:ring-ring",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -45,7 +45,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl font-sans font-medium transition-all",
+          "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
           "disabled:pointer-events-none disabled:opacity-50",
           variantStyles[variant],

@@ -10,10 +10,10 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: "bg-cream-200 text-warm-700",
-  success: "bg-sage-100 text-sage-500",
-  warning: "bg-amber-100 text-amber-500",
-  info: "bg-rose-100 text-rose-500",
+  default: "bg-muted text-card-foreground",
+  success: "bg-secondary/10 text-secondary",
+  warning: "bg-secondary/10 text-secondary",
+  info: "bg-primary/10 text-primary",
 };
 
 export function Badge({
@@ -24,7 +24,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-xs font-sans font-medium",
+        "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium",
         variantStyles[variant],
         className,
       )}

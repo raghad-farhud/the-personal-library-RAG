@@ -23,7 +23,7 @@ export function TabList({
   return (
     <div
       className={cn(
-        "flex gap-6 border-b border-warm-200 pb-px",
+        "flex gap-6 border-b border-border pb-px",
         className,
       )}
       role="tablist"
@@ -37,11 +37,11 @@ export function TabList({
             aria-selected={isActive}
             onClick={() => onTabChange(tab.id)}
             className={cn(
-              "inline-flex items-center gap-2 pb-2 font-serif text-sm transition-colors -mb-px",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300 focus-visible:ring-offset-2 rounded-sm",
+              "inline-flex items-center gap-2 pb-2 text-sm transition-colors -mb-px",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm",
               isActive
-                ? "text-rose-500 border-b-2 border-rose-500"
-                : "text-warm-400 hover:text-warm-600",
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             {tab.icon}

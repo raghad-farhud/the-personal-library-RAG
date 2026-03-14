@@ -17,18 +17,18 @@ export function Toggle({ label, checked, onChange, className }: ToggleProps) {
         onClick={() => onChange(!checked)}
         className={cn(
           "relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-400 focus-visible:ring-offset-2",
-          checked ? "bg-sage-400" : "bg-warm-200",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2",
+          checked ? "bg-secondary" : "bg-muted",
         )}
       >
         <span
           className={cn(
-            "pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform",
+            "pointer-events-none inline-block h-4 w-4 rounded-full bg-card shadow-sm transition-transform",
             checked ? "translate-x-6" : "translate-x-1",
           )}
         />
       </button>
-      <span className="text-sm font-sans text-warm-600">{label}</span>
+      <span className="text-sm text-muted-foreground">{label}</span>
     </label>
   );
 }

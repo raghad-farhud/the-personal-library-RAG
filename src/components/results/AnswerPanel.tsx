@@ -22,7 +22,7 @@ export function AnswerPanel({ response }: AnswerPanelProps) {
     <div className="flex flex-col gap-8">
       <section className="flex flex-col gap-4">
         <div className="flex flex-wrap items-center gap-3">
-          <h2 className="font-serif text-warm-900 text-xl font-medium">
+          <h2 className="text-foreground text-xl font-medium">
             Answer
           </h2>
           {confidenceVariant != null && response.confidence && (
@@ -35,7 +35,7 @@ export function AnswerPanel({ response }: AnswerPanelProps) {
 
         <p
           className={[
-            "font-sans text-warm-700 text-base leading-relaxed",
+            "text-card-foreground text-base leading-relaxed",
             "md:text-lg",
             "max-w-prose",
           ].join(" ")}
@@ -44,11 +44,11 @@ export function AnswerPanel({ response }: AnswerPanelProps) {
         </p>
       </section>
 
-      <hr className="border-t border-warm-200" />
+      <hr className="border-t border-border" />
 
       {response.sources.length > 0 && (
         <section className="flex flex-col gap-4">
-          <h3 className="font-serif text-warm-800 text-lg font-medium">
+          <h3 className="text-foreground text-lg font-medium">
             Sources
           </h3>
           <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">

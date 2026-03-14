@@ -20,8 +20,8 @@ export function SourceCard({ source }: SourceCardProps) {
   return (
     <article
       className={cn(
-        "relative rounded-xl border border-warm-200/50 bg-white",
-        "border-l-4 border-l-rose-400",
+        "relative rounded-xl border border-border/50 bg-card",
+        "border-l-4 border-l-primary",
         "transition-shadow duration-200 hover:shadow-md",
         "overflow-hidden",
       )}
@@ -29,18 +29,18 @@ export function SourceCard({ source }: SourceCardProps) {
       <div className="p-4">
         {scorePercent != null && (
           <span
-            className="absolute top-3 right-3 rounded-full bg-sage-100 px-2.5 py-0.5 text-xs font-sans font-medium text-sage-500"
+            className="absolute top-3 right-3 rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary"
             aria-label={`Relevance: ${scorePercent}%`}
           >
             {scorePercent}%
           </span>
         )}
 
-        <h3 className="font-serif text-warm-900 font-medium pr-12">
+        <h3 className="text-foreground font-medium pr-12">
           {source.title}
         </h3>
         {source.author && (
-          <p className="mt-0.5 text-sm text-warm-500 font-sans">
+          <p className="mt-0.5 text-sm text-muted-foreground">
             {source.author}
           </p>
         )}
@@ -50,16 +50,16 @@ export function SourceCard({ source }: SourceCardProps) {
             {formatSourceType(source.source_type)}
           </Badge>
           {source.page != null && (
-            <span className="text-xs text-warm-500 font-sans">p. {source.page}</span>
+            <span className="text-xs text-muted-foreground">p. {source.page}</span>
           )}
         </div>
 
         {source.snippet && (
           <blockquote
             className={cn(
-              "mt-3 rounded-lg bg-cream-100/60 px-3 py-2.5",
-              "border-l-2 border-l-amber-300/60",
-              "text-warm-600 italic font-sans text-sm leading-relaxed",
+              "mt-3 rounded-lg bg-muted/60 px-3 py-2.5",
+              "border-l-2 border-l-secondary/30",
+              "text-muted-foreground italic text-sm leading-relaxed",
             )}
           >
             &ldquo;{source.snippet}&rdquo;

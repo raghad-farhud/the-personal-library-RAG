@@ -165,11 +165,11 @@ export function AskPage() {
   );
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] overflow-hidden rounded-2xl border border-warm-200/50 bg-cream-50/30 shadow-sm">
+    <div className="flex h-[calc(100vh-4rem)] overflow-hidden rounded-2xl border border-border/50 bg-background/30 shadow-sm">
       {/* Mobile sidebar toggle */}
       <button
         onClick={() => setSidebarOpen((o) => !o)}
-        className="absolute left-4 top-4 z-20 rounded-lg border border-warm-200 bg-white p-1.5 text-warm-500 shadow-sm sm:hidden"
+        className="absolute left-4 top-4 z-20 rounded-lg border border-border bg-card p-1.5 text-muted-foreground shadow-sm sm:hidden"
       >
         {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>

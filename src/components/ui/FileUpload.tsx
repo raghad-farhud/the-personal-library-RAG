@@ -64,22 +64,22 @@ export function FileUpload({
     return (
       <div
         className={cn(
-          "flex items-center justify-between rounded-xl border border-warm-200 bg-white px-4 py-3",
+          "flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3",
           className,
         )}
       >
         <div className="flex flex-col gap-0.5 min-w-0">
-          <p className="text-sm font-sans text-warm-800 truncate">
+          <p className="text-sm text-foreground truncate">
             {selectedFile.name}
           </p>
-          <p className="text-xs text-warm-400">
+          <p className="text-xs text-muted-foreground">
             {formatFileSize(selectedFile.size)}
           </p>
         </div>
         <button
           type="button"
           onClick={onClear}
-          className="ml-4 shrink-0 rounded-lg p-1.5 text-warm-500 hover:bg-cream-200 hover:text-warm-600 transition-colors"
+          className="ml-4 shrink-0 rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
           aria-label="Remove file"
         >
           <X className="h-4 w-4" />
@@ -100,20 +100,20 @@ export function FileUpload({
       className={cn(
         "flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-8 transition-colors",
         dragOver
-          ? "border-rose-400 bg-rose-100/30"
-          : "border-warm-300 bg-cream-100 hover:bg-cream-200",
+          ? "border-primary bg-primary/5"
+          : "border-border bg-muted hover:bg-muted",
         className,
       )}
     >
-      <Upload className="h-8 w-8 text-warm-400" />
+      <Upload className="h-8 w-8 text-muted-foreground" />
       <div className="text-center">
-        <p className="text-sm font-sans text-warm-600">
+        <p className="text-sm text-muted-foreground">
           Drag & drop your file here, or{" "}
-          <span className="font-medium text-rose-500 underline underline-offset-2">
+          <span className="font-medium text-primary underline underline-offset-2">
             browse
           </span>
         </p>
-        <p className="mt-1 text-xs text-warm-400">
+        <p className="mt-1 text-xs text-muted-foreground">
           Accepted: {accept}
         </p>
       </div>

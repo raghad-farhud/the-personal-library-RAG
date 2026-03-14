@@ -52,20 +52,20 @@ export function ChatView({
   if (!chatId) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-4 p-8">
-        <div className="rounded-full bg-cream-100 p-6">
-          <MessageSquarePlus className="h-10 w-10 text-warm-400" />
+        <div className="rounded-full bg-muted p-6">
+          <MessageSquarePlus className="h-10 w-10 text-muted-foreground" />
         </div>
         <div className="text-center">
-          <h2 className="font-serif text-xl text-warm-800">
+          <h2 className="text-xl text-foreground">
             Ask Your Library
           </h2>
-          <p className="mt-1 text-sm text-warm-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             Select a chat or start a new conversation
           </p>
         </div>
         <button
           onClick={onNewChat}
-          className="mt-2 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-400 to-rose-500 px-5 py-2.5 text-sm font-medium text-white shadow-sm shadow-rose-300/30 transition-all hover:from-rose-500 hover:to-rose-500"
+          className="mt-2 inline-flex items-center gap-2 rounded-xl gradient-pink-purple px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-sm shadow-primary/30 transition-all"
         >
           <MessageSquarePlus className="h-4 w-4" />
           New Chat
@@ -79,14 +79,14 @@ export function ChatView({
       <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-8">
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-6 w-6 animate-spin text-warm-400" />
+            <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
           </div>
         ) : messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="rounded-full bg-cream-100 p-4">
-              <MessageSquarePlus className="h-8 w-8 text-warm-300" />
+            <div className="rounded-full bg-muted p-4">
+              <MessageSquarePlus className="h-8 w-8 text-muted-foreground/50" />
             </div>
-            <p className="mt-3 text-sm text-warm-400">
+            <p className="mt-3 text-sm text-muted-foreground">
               Ask anything about your library
             </p>
           </div>
@@ -97,14 +97,14 @@ export function ChatView({
             ))}
             {sending && (
               <div className="flex gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream-200 text-warm-600">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
                   <Loader2 className="h-4 w-4 animate-spin" />
                 </div>
-                <div className="rounded-2xl rounded-tl-sm border border-warm-100 bg-white px-4 py-3 shadow-sm">
+                <div className="rounded-2xl rounded-tl-sm border border-border bg-card px-4 py-3 shadow-sm">
                   <div className="flex items-center gap-1.5">
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-warm-300 [animation-delay:0ms]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-warm-300 [animation-delay:150ms]" />
-                    <span className="h-2 w-2 animate-bounce rounded-full bg-warm-300 [animation-delay:300ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:0ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:150ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground/50 [animation-delay:300ms]" />
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export function ChatView({
         )}
       </div>
 
-      <div className="border-t border-warm-200/60 bg-white/80 px-4 py-3 backdrop-blur sm:px-8">
+      <div className="border-t border-border/60 bg-card/80 px-4 py-3 backdrop-blur sm:px-8">
         <form
           onSubmit={handleSubmit}
           className="mx-auto flex max-w-3xl items-end gap-3"
@@ -127,10 +127,10 @@ export function ChatView({
             placeholder="Ask your library something…"
             rows={1}
             className={cn(
-              "flex-1 resize-none rounded-xl border border-warm-200 bg-white px-4 py-2.5 text-sm text-warm-900 font-sans",
-              "placeholder:text-warm-400",
+              "flex-1 resize-none rounded-xl border border-border bg-card px-4 py-2.5 text-sm text-foreground",
+              "placeholder:text-muted-foreground",
               "transition-all",
-              "focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-300",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring",
               "disabled:opacity-50 disabled:cursor-not-allowed",
               "max-h-32",
             )}
@@ -146,8 +146,7 @@ export function ChatView({
             disabled={!input.trim() || sending}
             className={cn(
               "shrink-0 rounded-xl p-2.5 transition-all",
-              "bg-gradient-to-r from-rose-400 to-rose-500 text-white shadow-sm shadow-rose-300/30",
-              "hover:from-rose-500 hover:to-rose-500",
+              "gradient-pink-purple text-primary-foreground shadow-sm shadow-primary/30",
               "disabled:opacity-50 disabled:pointer-events-none",
             )}
           >

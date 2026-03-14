@@ -15,7 +15,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="font-serif text-sm text-warm-600"
+            className="text-sm text-muted-foreground"
           >
             {label}
           </label>
@@ -24,17 +24,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "rounded-xl border border-warm-200 bg-white px-4 py-2 text-sm text-warm-900 font-sans",
-            "placeholder:text-warm-400",
+            "rounded-xl border border-border bg-card px-4 py-2 text-sm text-foreground",
+            "placeholder:text-muted-foreground",
             "transition-all",
-            "focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-rose-300",
+            "focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring",
             "disabled:opacity-50 disabled:cursor-not-allowed",
-            error && "border-rose-400 focus:ring-rose-400 focus:border-rose-400",
+            error && "border-primary focus:ring-ring focus:border-ring",
             className,
           )}
           {...props}
         />
-        {error && <p className="text-xs text-rose-500">{error}</p>}
+        {error && <p className="text-xs text-primary">{error}</p>}
       </div>
     );
   },

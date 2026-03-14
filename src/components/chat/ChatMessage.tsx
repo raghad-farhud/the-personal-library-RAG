@@ -32,8 +32,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
         className={cn(
           "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
           isUser
-            ? "bg-rose-100 text-rose-500"
-            : "bg-cream-200 text-warm-600",
+            ? "bg-primary/10 text-primary"
+            : "bg-muted text-muted-foreground",
         )}
       >
         {isUser ? (
@@ -53,8 +53,8 @@ export function ChatMessage({ message }: ChatMessageProps) {
           className={cn(
             "rounded-2xl px-4 py-3 text-sm leading-relaxed",
             isUser
-              ? "rounded-tr-sm bg-rose-50 text-warm-800"
-              : "rounded-tl-sm bg-white text-warm-700 shadow-sm border border-warm-100",
+              ? "rounded-tr-sm bg-primary/5 text-foreground"
+              : "rounded-tl-sm bg-card text-card-foreground shadow-sm border border-border",
           )}
         >
           <p className="whitespace-pre-wrap">{message.content}</p>
@@ -68,7 +68,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
         {!isUser && meta.sources && meta.sources.length > 0 && (
           <div className="space-y-2">
-            <p className="text-xs font-medium text-warm-500">Sources</p>
+            <p className="text-xs font-medium text-muted-foreground">Sources</p>
             <div className="">
               {meta.sources.map((source, i) => (
                 <SourceCard key={i} source={source} />
@@ -78,7 +78,7 @@ export function ChatMessage({ message }: ChatMessageProps) {
         )}
 
         <p className={cn(
-          "text-[11px] text-warm-400",
+          "text-[11px] text-muted-foreground",
           isUser ? "text-right" : "text-left",
         )}>
           {new Date(message.created_at).toLocaleTimeString(undefined, {

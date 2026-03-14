@@ -10,11 +10,11 @@ const NAV_LINKS = [
 
 export function Navigation() {
   return (
-    <nav className="fixed inset-x-0 top-0 z-10 h-16 border-b border-warm-200/50 bg-white/90 backdrop-blur-lg">
+    <nav className="fixed inset-x-0 top-0 z-10 h-16 border-b border-border/50 bg-card/90 backdrop-blur-lg">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-rose-400" />
-          <span className="font-serif text-lg text-warm-900">Library Mind</span>
+          <BookOpen className="h-5 w-5 text-primary" />
+          <span className="text-lg text-foreground">Library Mind</span>
         </Link>
 
         <div className="flex items-center gap-6">
@@ -27,8 +27,8 @@ export function Navigation() {
                 cn(
                   "text-sm transition-colors",
                   isActive
-                    ? "font-medium text-rose-500"
-                    : "text-warm-500 hover:text-warm-700",
+                    ? "font-medium text-primary"
+                    : "text-muted-foreground hover:text-foreground",
                 )
               }
             >
@@ -37,7 +37,7 @@ export function Navigation() {
           ))}
         </div>
 
-        <Link to="/settings" className="text-warm-400 transition-colors hover:text-warm-600">
+        <Link to="/settings" className="text-muted-foreground transition-colors hover:text-foreground">
           <Settings className="h-5 w-5" />
         </Link>
       </div>

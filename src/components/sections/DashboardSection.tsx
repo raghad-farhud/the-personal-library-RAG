@@ -20,13 +20,13 @@ interface StatCardProps {
 
 function StatCard({ icon, label, children }: StatCardProps) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-warm-200/50 bg-white px-4 py-3">
+    <div className="flex items-center gap-3 rounded-xl border border-border/50 bg-card px-4 py-3">
       {icon}
       <div className="min-w-0">
-        <p className="text-[11px] font-sans uppercase tracking-wide text-warm-400">
+        <p className="text-[11px] uppercase tracking-wide text-muted-foreground">
           {label}
         </p>
-        <p className="truncate text-sm font-sans text-warm-700">{children}</p>
+        <p className="truncate text-sm text-card-foreground">{children}</p>
       </div>
     </div>
   );
@@ -38,10 +38,10 @@ function ConfigDot({ configured }: { configured: boolean }) {
       <span
         className={cn(
           "inline-block h-2 w-2 rounded-full",
-          configured ? "bg-sage-400" : "bg-warm-300",
+          configured ? "bg-secondary" : "bg-muted-foreground/30",
         )}
       />
-      <span className="text-sm text-warm-700">
+      <span className="text-sm text-card-foreground">
         {configured ? "Connected" : "Not set"}
       </span>
     </span>
@@ -51,19 +51,19 @@ function ConfigDot({ configured }: { configured: boolean }) {
 export function DashboardSection({ stats }: DashboardSectionProps) {
   return (
     <section className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      <StatCard icon={<Upload className="h-4 w-4 text-rose-400" />} label="Uploads Today">
+      <StatCard icon={<Upload className="h-4 w-4 text-primary" />} label="Uploads Today">
         {stats.uploadsToday}
       </StatCard>
-      <StatCard icon={<FileText className="h-4 w-4 text-amber-400" />} label="Last Source">
+      <StatCard icon={<FileText className="h-4 w-4 text-secondary" />} label="Last Source">
         {stats.lastSourceType || "—"}
       </StatCard>
-      <StatCard icon={<Search className="h-4 w-4 text-sage-400" />} label="Last Query">
+      <StatCard icon={<Search className="h-4 w-4 text-secondary" />} label="Last Query">
         {truncate(stats.lastQuery, 30)}
       </StatCard>
-      <StatCard icon={<Link className="h-4 w-4 text-rose-400" />} label="Ingestion">
+      <StatCard icon={<Link className="h-4 w-4 text-primary" />} label="Ingestion">
         <ConfigDot configured={stats.ingestionConfigured} />
       </StatCard>
-      <StatCard icon={<Link className="h-4 w-4 text-amber-400" />} label="Ask Endpoint">
+      <StatCard icon={<Link className="h-4 w-4 text-secondary" />} label="Ask Endpoint">
         <ConfigDot configured={stats.askConfigured} />
       </StatCard>
     </section>

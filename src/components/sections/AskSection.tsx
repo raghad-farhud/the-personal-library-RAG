@@ -124,7 +124,7 @@ export function AskSection({ webhookUrl, onQuerySubmit }: AskSectionProps) {
           <button
             type="button"
             onClick={() => setFiltersOpen((o) => !o)}
-            className="inline-flex items-center gap-1.5 text-sm font-sans text-warm-500 hover:text-rose-500 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
           >
             {filtersOpen ? (
               <ChevronUp className="h-4 w-4" />
@@ -135,7 +135,7 @@ export function AskSection({ webhookUrl, onQuerySubmit }: AskSectionProps) {
           </button>
 
           {filtersOpen && (
-            <div className="mt-3 grid grid-cols-1 gap-4 rounded-xl border border-warm-200 bg-cream-100/30 p-4 sm:grid-cols-2">
+            <div className="mt-3 grid grid-cols-1 gap-4 rounded-xl border border-border bg-muted/30 p-4 sm:grid-cols-2">
               <Select
                 label="Source Type"
                 options={SOURCE_TYPE_OPTIONS}
@@ -172,7 +172,7 @@ export function AskSection({ webhookUrl, onQuerySubmit }: AskSectionProps) {
         </div>
 
         {error && (
-          <p className="text-sm text-rose-500">{error}</p>
+          <p className="text-sm text-primary">{error}</p>
         )}
 
         <Button type="submit" loading={loading} disabled={!question.trim()}>

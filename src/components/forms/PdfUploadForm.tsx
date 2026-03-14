@@ -164,14 +164,14 @@ export function PdfUploadForm({ webhookUrl, onSuccess }: PdfUploadFormProps) {
       />
 
       <div className="space-y-1.5">
-        <span className="font-serif text-sm text-warm-700">PDF File</span>
+        <span className="text-sm text-card-foreground">PDF File</span>
         <FileUpload
           accept=".pdf"
           selectedFile={form.file}
           onFileSelect={(file) => set("file", file)}
           onClear={() => set("file", null)}
         />
-        {errors.file && <p className="text-xs text-rose-500">{errors.file}</p>}
+        {errors.file && <p className="text-xs text-primary">{errors.file}</p>}
       </div>
 
       <Textarea

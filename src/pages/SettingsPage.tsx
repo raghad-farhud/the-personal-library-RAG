@@ -9,8 +9,8 @@ export function SettingsPage() {
   return (
     <div className="space-y-10">
       <header>
-        <h1 className="font-serif text-3xl text-warm-900">Settings</h1>
-        <p className="mt-2 text-warm-500">
+        <h1 className="text-3xl text-foreground">Settings</h1>
+        <p className="mt-2 text-muted-foreground">
           Configure your webhook endpoints and preferences.
         </p>
       </header>
@@ -23,7 +23,7 @@ export function SettingsPage() {
 
       <Link
         to="/"
-        className="inline-flex items-center gap-2 text-sm text-warm-500 transition-colors hover:text-warm-700"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Home

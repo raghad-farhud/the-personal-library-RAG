@@ -44,8 +44,8 @@ export function SettingsSection({
   return (
     <section>
       <div className="mb-4 flex items-center gap-2">
-        <Settings className="h-5 w-5 text-rose-400" strokeWidth={1.5} />
-        <h2 className="font-serif text-2xl text-warm-900">Settings</h2>
+        <Settings className="h-5 w-5 text-primary" strokeWidth={1.5} />
+        <h2 className="text-2xl text-foreground">Settings</h2>
       </div>
 
       <Card>
@@ -98,8 +98,8 @@ export function SettingsSection({
             </div>
           </div>
 
-          <div className="flex items-center justify-between border-t border-warm-200 pt-4">
-            <p className="text-xs text-warm-400">
+          <div className="flex items-center justify-between border-t border-border pt-4">
+            <p className="text-xs text-muted-foreground">
               Webhook URLs are stored locally in your browser.
             </p>
             <Button variant="secondary" size="sm" onClick={onReset}>
