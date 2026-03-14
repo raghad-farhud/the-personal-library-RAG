@@ -36,10 +36,6 @@ export function Navigation() {
             </NavLink>
           ))}
         </div>
-
-        <Link to="/settings" className="text-muted-foreground transition-colors hover:text-foreground">
-          <Settings className="h-5 w-5" />
-        </Link>
       </div>
     </nav>
   );

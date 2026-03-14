@@ -1,14 +1,13 @@
-import type { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import { Navigation } from "@/components/layout/Navigation";
+import { useAuth } from "@/contexts/AuthContext";
 
-interface AppShellProps {
-  children: ReactNode;
-}
+export function AppShell() {
+  const { isAuthenticated } = useAuth();
 
-export function AppShell({ children }: AppShellProps) {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
-      <Navigation />
+      {isAuthenticated && <Navigation />}
 
       <div
         aria-hidden
@@ -19,8 +18,8 @@ export function AppShell({ children }: AppShellProps) {
         className="pointer-events-none absolute right-1/4 top-24 h-[400px] w-[400px] rounded-full bg-secondary/10 blur-3xl"
       />
 
-      <main className="relative mx-auto max-w-5xl px-6 py-8 pt-24">
-        {children}
+      <main className={`relative mx-auto max-w-5xl px-6 py-8 ${isAuthenticated ? "pt-24" : "pt-8"}`}>
+        <Outlet />
       </main>
     </div>
   );

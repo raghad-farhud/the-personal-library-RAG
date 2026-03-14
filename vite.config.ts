@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       proxy,
+      historyApiFallback: true,
     },
   };
 });
