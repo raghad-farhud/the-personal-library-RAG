@@ -2,8 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/the-personal-library-RAG/images/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Allow eval/inline so bundled code (e.g. Supabase) runs under strict CSP (e.g. GitHub Pages) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co; img-src 'self' data: https:; default-src 'self';"
+    />
+    <link rel="icon" href="./images/favicon.ico" />
     <title>Library Mind — Personal Knowledge Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +17,15 @@
     <link rel="stylesheet" crossorigin href="/the-personal-library-RAG/assets/index-DlBLcaPT.css">
   </head>
   <body class="antialiased">
-    <div id="root"></div>
+    <div id="root">
+      <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:system-ui,sans-serif;color:#333;">
+        Loading…
+      </div>
+    </div>
+    <noscript>
+      <div style="padding:2rem;text-align:center;font-family:system-ui,sans-serif;">
+        This app needs JavaScript. Please enable it and reload.
+      </div>
+    </noscript>
   </body>
 </html>
