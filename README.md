@@ -1,8 +1,20 @@
 # Library Mind
 
-A cozy, modern personal knowledge library frontend for a RAG system. Upload books, PDFs, quotes, insights, and notes — then query your collected wisdom through a calm, bookish interface.
+A cozy, modern **personal knowledge library** frontend. Ingest books, PDFs, quotes, insights, and notes, then **ask questions** over your collection via an AI-powered chat and RAG (Retrieval-Augmented Generation) pipeline. All through a calm, bookish interface.
 
-Built with React + Vite + TypeScript + Tailwind CSS.
+## About This Project
+
+Library Mind is a frontend that connects your personal knowledge base to a RAG backend. You upload and tag content (PDFs, quotes, insights, notes), and the app sends ingestion and query requests to configurable webhooks (e.g. **n8n**). Answers are shown with confidence scores and source cards. **Supabase** backs authentication and stores **AI chat** sessions and messages, so you can have multi-turn conversations tied to your library. The UI is built for clarity and focus: dashboard stats, filters, and a dedicated Ask/Chat experience.
+
+## Technologies
+
+| Area | Technologies |
+|------|----------------|
+| **Frontend** | React 19, Vite 6, TypeScript, Tailwind CSS 4, React Router, Lucide React |
+| **Backend / integrations** | **n8n** (or any webhook) for ingestion and RAG queries |
+| **RAG system** | Ask endpoint: send a question and optional filters; receive answers with cited sources (backend can use vector DB + LLM) |
+| **Auth & data** | **Supabase** — authentication, and tables for chats and messages (AI chat history) |
+| **Deploy** | GitHub Pages (static build), optional GitHub Actions workflow |
 
 ## Features
 
@@ -26,6 +38,10 @@ Built with React + Vite + TypeScript + Tailwind CSS.
 ```bash
 npm install
 ```
+
+### Environment
+
+Copy `.env.example` to `.env` and fill in your values (Supabase, optional webhooks, auth). See [DEPLOY.md](DEPLOY.md) for GitHub deployment and secrets.
 
 ### Run Locally
 
@@ -203,7 +219,7 @@ See `src/types/index.ts` for exact payload shapes.
 }
 ```
 
-## Tech Stack
+## Tech Stack (frontend)
 
 - **React 19** — UI framework
 - **Vite 6** — Build tool
@@ -211,6 +227,8 @@ See `src/types/index.ts` for exact payload shapes.
 - **Tailwind CSS 4** — Styling
 - **Lucide React** — Icons
 - **clsx + tailwind-merge** — Class utilities
+
+See **Technologies** above for n8n, RAG, Supabase, and AI chat.
 
 ## License
 

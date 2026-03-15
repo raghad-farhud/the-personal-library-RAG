@@ -1,11 +1,12 @@
 {
   "name": "the-personal-library",
+  "homepage": "https://raghad-farhud.github.io/the-personal-library/",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node -e \"require('fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "build": "node ./node_modules/typescript/bin/tsc -b && vite build && node scripts/copy-404.cjs",
     "preview": "vite preview",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
