@@ -6,9 +6,10 @@ import { useWebhookConfig } from "@/hooks/useWebhookConfig";
 import { useDashboardStats } from "@/hooks/useDashboardStats";
 import { useDocuments } from "@/hooks/useDocuments";
 
-export function UploadPage() {
+export function LibraryPage() {
   const { config, updateConfig, resetConfig } = useWebhookConfig();
   const { stats, recordUpload, setEndpointStatus } = useDashboardStats();
+  const { documents, loading, error, refetch } = useDocuments();
 
   useEffect(() => {
     setEndpointStatus(
@@ -19,25 +20,24 @@ export function UploadPage() {
 
   const handleIngestionSuccess = useCallback(() => {
     recordUpload("upload");
-  }, [recordUpload]);
+    refetch();
+  }, [recordUpload, refetch]);
 
   return (
     <div className="space-y-10 max-w-4xl mx-auto">
       <header>
         <h1 className="text-3xl text-foreground">
-          Add to Your Library
+          Your Library
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Upload documents, save quotes, capture insights, or jot down notes.
+          Your documents, quotes, insights, and notes.
         </p>
       </header>
-
-      <DashboardSection stats={stats} />
-
-
-      <IngestionSection
-        webhookUrl={config.ingestionUrl}
-        onSuccess={handleIngestionSuccess}
+      <DocumentsSection
+        documents={documents}
+        loading={loading}
+        error={error}
+        onRefresh={refetch}
       />
     </div>
   );

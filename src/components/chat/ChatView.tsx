@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, MessageSquarePlus } from "lucide-react";
+import {  Loader2, MessageSquarePlus } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { ChatMessage } from "./ChatMessage";
 import type { Message } from "@/types";
+import { Send } from "pixelarticons/react";
+
 
 interface ChatViewProps {
   messages: Message[];
@@ -76,7 +78,7 @@ export function ChatView({
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
-      <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-8">
+      <div className="flex-1 overflow-y-auto px-2 py-6 sm:px-8">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
@@ -150,7 +152,7 @@ export function ChatView({
               "disabled:opacity-50 disabled:pointer-events-none",
             )}
           >
-            <Send className="h-4 w-4" />
+            <Send className="h-5 w-5 " />
           </button>
         </form>
       </div>

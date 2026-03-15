@@ -8,31 +8,31 @@ import bgSphere from "/images/bg-sphere-clean.png";
 export function LandingPage() {
   return (
     <>
-      <section className="flex min-h-[80vh] md:max-h-screen flex-col w-full items-center justify-center text-center overflow-hidden">
-        <div className="absolute z-10 -bottom-10 left-0 animate-float" style={{ animationDelay: "1.5s" }}>
-          <img src={pixelU} alt="My Second Brain" className="w-md h-md drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)]" />
+      <section className="flex min-h-[85vh] lg:min-h-[80vh] h-[calc(90vh-4rem)] lg:max-h-screen flex-col w-full items-center justify-center text-center overflow-hidden">
+        <div className="absolute z-10 bottom-0 left-0">
+          <img src={pixelU} alt="My Second Brain" className="w-48 h-w-48 drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)] lg:w-md lg:h-auto" />
         </div>
-        <div className="absolute z-10 bottom-0 right-28 animate-float">
-          <img src={pixelL} alt="My Second Brain" className="w-96 h-96 drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)]" />
+        <div className="absolute z-10 bottom-14 right-4 animate-float sm:right-12 lg:bottom-0 lg:right-28">
+          <img src={pixelL} alt="My Second Brain" className="w-28 h-28 drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)] sm:w-48 sm:h-48 lg:w-80 lg:h-80" />
         </div>
-        <div className="absolute z-10 bottom-2/3 right-24 animate-float" style={{ animationDelay: "1.2s" }}>
-          <img src={books} alt="My Second Brain" className="w-72 h-auto drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)]" />
+        <div className="absolute z-10 bottom-4/6 translate-y-12 right-2 animate-float sm:right-8 lg:bottom-2/3 lg:right-24" style={{ animationDelay: "1.2s" }}>
+          <img src={books} alt="My Second Brain" className="w-36 h-auto drop-shadow-[0_8px_12px_oklch(0.65_0.25_340/0.5)] sm:w-36 lg:w-72" />
         </div>
-        <div className="absolute z-10 top-1/6 left-1/6 animate-float" style={{ animationDelay: "0.6s" }}>
-          <img src={papers} alt="My Second Brain" className="w-72 h-auto" />
+        <div className="absolute z-10 top-1/8 left-2 animate-float sm:top-1/6 sm:left-1/6" style={{ animationDelay: "0.6s" }}>
+          <img src={papers} alt="My Second Brain" className="w-32 h-auto sm:w-36 lg:w-72" />
         </div>
 
         <div className="relative flex flex-col items-center justify-center max-w-3xl">
 
-          <div className="absolute top-0 -translate-y-1/4 right-1/2 translate-x-1/2  opacity-80 w-full">
+          <div className="absolute top-0 -translate-y-1/4 right-1/2 translate-x-1/2  opacity-80 w-[110vw] lg:w-full">
             <img src={bgSphere} alt="My Second Brain" className="w-full h-full object-contain " />
           </div>
 
-          <h1 className="text-black relative z-10 text-shadow-[0_0px_8px_oklch(0.65_0.25_340/0.5)] text-5xl font-bold sm:text-6xl md:text-7xl">
+          <h1 className="text-black relative z-10 text-shadow-[0_0px_8px_oklch(0.65_0.25_340/0.5)] text-5xl font-bold sm:text-6xl lg:text-7xl">
             My Second Brain
           </h1>
 
-          <p className="mt-4 relative text-lg text-muted-foreground">
+          <p className="mt-4 relative z-10 text-lg text-muted-foreground">
             A private reading room for your mind — where the books you loved, the words that moved you, and your own reflections meet
           </p>
 
@@ -77,9 +77,9 @@ export function LandingPage() {
 
       </section>
 
-      <footer className="pb-8 text-center">
+      <footer className="pb-2 hidden lg:block relative z-10 text-center">
         <p className="text-sm text-muted-foreground">
-          Library Mind — A personal RAG knowledge system
+          A personal RAG knowledge system
         </p>
       </footer>
     </>

@@ -165,11 +165,11 @@ export function AskPage() {
   );
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] overflow-hidden rounded-2xl border border-border/50 bg-background/30 shadow-sm">
+    <div className="flex flex-col md:flex-row h-[calc(90vh-4rem)] overflow-hidden rounded-2xl border border-border/50 bg-background/30 shadow-sm">
       {/* Mobile sidebar toggle */}
       <button
         onClick={() => setSidebarOpen((o) => !o)}
-        className="absolute left-4 top-4 z-20 rounded-lg border border-border bg-card p-1.5 text-muted-foreground shadow-sm sm:hidden"
+        className=" w-full rounded-t-lg border border-border bg-card p-1.5 px-3 text-muted-foreground sm:hidden"
       >
         {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
@@ -177,8 +177,8 @@ export function AskPage() {
       {/* Sidebar */}
       <div
         className={`${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } absolute z-10 h-full transition-transform sm:relative sm:translate-x-0`}
+          sidebarOpen ? "translate-x-3" : "-translate-x-[120%]"
+        } absolute translate-y-10 z-10 max-h-[calc(85vh-4rem)] overflow-y-auto shadow rounded-lg h-fit md:h-full transition-transform sm:relative sm:translate-x-0`}
       >
         <ChatSidebar
           chats={chats}

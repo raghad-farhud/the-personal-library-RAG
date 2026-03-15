@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
 import { Plus, MessageSquare, Trash2 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { Chat } from "@/types";
@@ -31,8 +33,19 @@ export function ChatSidebar({
   onDeleteChat,
   loading,
 }: ChatSidebarProps) {
+  const [chatToDelete, setChatToDelete] = useState<string | null>(null);
+  const chat = chatToDelete ? chats.find((c) => c.id === chatToDelete) : null;
+
+  const handleConfirmDelete = () => {
+    if (chatToDelete) {
+      onDeleteChat(chatToDelete);
+      setChatToDelete(null);
+    }
+  };
+
   return (
-    <aside className="flex h-full w-72 flex-col border-r border-border/60 bg-background/50">
+    <>
+      <aside className="flex h-full w-72 flex-col border-r border-border/90 rounded-lg  bg-background/95">
       <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
         <h2 className="text-lg text-foreground">Chats</h2>
         <button
@@ -61,13 +74,13 @@ export function ChatSidebar({
             </button>
           </div>
         ) : (
-          <ul className="space-y-1">
+          <ul className="space-y-0">
             {chats.map((chat) => (
-              <li key={chat.id}>
+              <li key={chat.id} className="w-full flex flex-row">
                 <button
                   onClick={() => onSelectChat(chat.id)}
                   className={cn(
-                    "group flex w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left transition-all",
+                    "group flex flex-row w-full items-start gap-2.5 rounded-xl px-3 py-2.5 text-left transition-all",
                     activeChatId === chat.id
                       ? "bg-primary/5 text-primary"
                       : "text-muted-foreground hover:bg-muted",
@@ -90,9 +103,9 @@ export function ChatSidebar({
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      onDeleteChat(chat.id);
+                      setChatToDelete(chat.id);
                     }}
-                    className="mt-0.5 shrink-0 rounded p-1 text-muted-foreground/50 opacity-0 transition-all hover:bg-primary/10 hover:text-primary group-hover:opacity-100"
+                    className="mt-0.5 shrink-0 rounded p-1 text-muted-foreground/50 transition-all hover:text-primary"
                     title="Delete chat"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
@@ -104,5 +117,46 @@ export function ChatSidebar({
         )}
       </div>
     </aside>
+
+      {/* Delete confirmation modal — portaled to body so it overlays the whole app */}
+      {chatToDelete &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-100 flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-chat-title"
+          >
+            <div
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+              onClick={() => setChatToDelete(null)}
+              aria-hidden="true"
+            />
+            <div className="relative w-full max-w-sm rounded-xl border border-border bg-card p-5 shadow-lg">
+              <h2 id="delete-chat-title" className="text-lg font-semibold text-foreground">
+                Delete chat?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                "{chat?.title || "New Chat"}" will be permanently deleted. This cannot be undone.
+              </p>
+              <div className="mt-6 flex justify-end gap-2">
+                <button
+                  onClick={() => setChatToDelete(null)}
+                  className="rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmDelete}
+                  className="rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-destructive-foreground transition-colors hover:bg-destructive/90"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )}
+    </>
   );
 }
