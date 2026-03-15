@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const askUrl = env.VITE_ASK_WEBHOOK_URL;
   const ingestUrl = env.VITE_INGEST_WEBHOOK_URL;
+  // Must match GitHub repo name for Pages: https://<user>.github.io/<base>/
+  const base = env.VITE_BASE_PATH || "/the-personal-library-RAG/";
 
   const proxy: Record<string, ProxyOptions> = {};
   if (askUrl) {
@@ -29,7 +31,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
-    base: "/the-personal-library-RAG/",
+    base,
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),

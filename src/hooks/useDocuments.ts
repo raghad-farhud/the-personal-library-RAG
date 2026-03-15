@@ -57,6 +57,13 @@ export function useDocuments() {
     setLoading(true);
     setError(null);
 
+    if (!supabase) {
+      setError("Supabase not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.");
+      setDocuments([]);
+      setLoading(false);
+      return;
+    }
+
     const [baseResult, contentResult] = await Promise.all([
       supabase
         .from("document_metadata")

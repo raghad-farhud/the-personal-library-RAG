@@ -16,8 +16,7 @@ This guide walks you through pushing the project to GitHub and deploying it (e.g
 ### If you don’t have a GitHub repo yet
 
 1. Create a new repository on [github.com/new](https://github.com/new).
-   - Name it `the-personal-library` if you want the app to work at `https://<your-username>.github.io/the-personal-library/` without changing the Vite `base` in `vite.config.ts`.
-   - Or choose any name and set `base: "/your-repo-name/"` in `vite.config.ts`.
+   - The app’s **base path** must match your repo name (e.g. repo `the-personal-library-RAG` → site at `.../the-personal-library-RAG/`). It’s set in `vite.config.ts` via `base` (default `"/the-personal-library-RAG/"`). For a different repo name, set the `VITE_BASE_PATH` secret (e.g. `"/your-repo-name/"`) so the build uses the correct asset paths.
 2. Don’t initialize with a README (you already have one).
 
 ### Push from your machine
@@ -74,7 +73,7 @@ Add repository secrets so the build can inject env vars:
   - `VITE_INGEST_WEBHOOK_URL`
   - `VITE_ASK_WEBHOOK_URL`
 
-If these are not set, the build still succeeds; the app will show a runtime error until you configure Supabase (and optionally auth/webhooks).
+If these are not set, the build still succeeds and the app loads; Library and Ask will show a “Supabase not configured” message until you add the secrets and redeploy.
 
 ---
 

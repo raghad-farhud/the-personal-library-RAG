@@ -1,8 +1,17 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import type { Chat, Message, MessageRole } from "@/types";
 
+function getSupabase(): SupabaseClient {
+  if (!supabase) {
+    throw new Error("Supabase not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your deployment environment.");
+  }
+  return supabase;
+}
+
 export async function fetchChats(): Promise<Chat[]> {
-  const { data, error } = await supabase
+  const db = getSupabase();
+  const { data, error } = await db
     .from("chats")
     .select("*")
     .order("updated_at", { ascending: false });
@@ -12,7 +21,8 @@ export async function fetchChats(): Promise<Chat[]> {
 }
 
 export async function createChat(title?: string): Promise<Chat> {
-  const { data, error } = await supabase
+  const db = getSupabase();
+  const { data, error } = await db
     .from("chats")
     .insert({ title: title || null })
     .select()
@@ -23,7 +33,8 @@ export async function createChat(title?: string): Promise<Chat> {
 }
 
 export async function updateChatTitle(chatId: string, title: string): Promise<void> {
-  const { error } = await supabase
+  const db = getSupabase();
+  const { error } = await db
     .from("chats")
     .update({ title, updated_at: new Date().toISOString() })
     .eq("id", chatId);
@@ -32,7 +43,8 @@ export async function updateChatTitle(chatId: string, title: string): Promise<vo
 }
 
 export async function deleteChat(chatId: string): Promise<void> {
-  const { error } = await supabase
+  const db = getSupabase();
+  const { error } = await db
     .from("chats")
     .delete()
     .eq("id", chatId);
@@ -41,7 +53,8 @@ export async function deleteChat(chatId: string): Promise<void> {
 }
 
 export async function fetchMessages(chatId: string): Promise<Message[]> {
-  const { data, error } = await supabase
+  const db = getSupabase();
+  const { data, error } = await db
     .from("messages")
     .select("*")
     .eq("chat_id", chatId)
@@ -57,7 +70,8 @@ export async function addMessage(
   content: string,
   metadata: Record<string, unknown> = {},
 ): Promise<Message> {
-  const { data, error } = await supabase
+  const db = getSupabase();
+  const { data, error } = await db
     .from("messages")
     .insert({ chat_id: chatId, role, content, metadata })
     .select()
@@ -65,7 +79,7 @@ export async function addMessage(
 
   if (error) throw error;
 
-  await supabase
+  await db
     .from("chats")
     .update({ updated_at: new Date().toISOString() })
     .eq("id", chatId);
