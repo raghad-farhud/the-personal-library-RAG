@@ -4,6 +4,8 @@ import { NavLink, Link } from "react-router-dom";
 import logo from "/images/pixel-l.png";
 import { cn } from "@/lib/cn";
 import { Home, Upload, Message, Library, Menu, Cancel } from "pixelarticons/react";
+import { LogIn, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const NAV_LINKS = [
   { to: "/", label: "Home", icon: <Home className="w-5 h-5 shrink-0" /> },
@@ -22,6 +24,7 @@ const navLinkStyles = ({ isActive }: { isActive: boolean }) =>
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <>
@@ -62,6 +65,24 @@ export function Navigation() {
               {label}
             </NavLink>
           ))}
+
+          {isAuthenticated ? (
+            <button
+              onClick={logout}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+            >
+              <LogOut className="h-4 w-4" />
+              Sign out
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 rounded-lg gradient-pink-purple px-3 py-1.5 text-sm font-medium text-primary-foreground shadow-sm shadow-primary/20 transition-all"
+            >
+              <LogIn className="h-4 w-4" />
+              Sign in
+            </Link>
+          )}
         </div>
 
         {/* Mobile menu button */}
@@ -104,6 +125,28 @@ export function Navigation() {
                   {label}
                 </NavLink>
               ))}
+
+              {isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    logout();
+                    setMenuOpen(false);
+                  }}
+                  className="flex gap-2 items-center py-2 px-3 rounded-md text-sm text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/50"
+                >
+                  <LogOut className="w-5 h-5 shrink-0" />
+                  Sign out
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex gap-2 items-center py-2 px-3 rounded-md text-sm font-medium text-primary transition-colors hover:bg-primary/10"
+                >
+                  <LogIn className="w-5 h-5 shrink-0" />
+                  Sign in
+                </Link>
+              )}
             </div>
           </div>
         </div>,
