@@ -30,8 +30,14 @@ jobs:
 
       - run: npm ci
 
-      # Optional: add repo secrets (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, etc.)
-      # and pass them here so the built app can talk to your backend.
+      - name: Verify secrets are set
+        env:
+          VITE_AUTH_USERNAME: ${{ secrets.VITE_AUTH_USERNAME }}
+          VITE_AUTH_PASSWORD: ${{ secrets.VITE_AUTH_PASSWORD }}
+        run: |
+          if [ -z "$VITE_AUTH_USERNAME" ]; then echo "::warning::VITE_AUTH_USERNAME is EMPTY"; else echo "VITE_AUTH_USERNAME is set (length=${#VITE_AUTH_USERNAME})"; fi
+          if [ -z "$VITE_AUTH_PASSWORD" ]; then echo "::warning::VITE_AUTH_PASSWORD is EMPTY"; else echo "VITE_AUTH_PASSWORD is set (length=${#VITE_AUTH_PASSWORD})"; fi
+
       - run: npm run build
         env:
           VITE_BASE_PATH: ${{ secrets.VITE_BASE_PATH }}
